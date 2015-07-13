@@ -1,0 +1,96 @@
+{% extends "logged_in.html" %}
+
+{% block content %}
+
+<div class='container'>
+
+      <div class="page-header">
+		<div class='text-center'>
+        <h1>Compare</h1><br>
+		<h4>Which driving situation is more demanding?</h4>
+		</div>
+      </div>
+
+	<!-- ROW FOR VIDS -->	
+	<div class='row'>
+		<div class='col-xs-6'>
+			<div class='text-center'>
+
+			<video width="95%" controls=controls id='v1'>
+				<source src={{image_pair[0][1]}} type="video/ogg">
+			</video>
+			
+			</div>
+		</div>
+		<div class='col-xs-6'>
+			<div class='text-center'>
+
+			<video width="95%" controls=controls id='v2'>
+				<source src={{image_pair[1][1]}} type="video/ogg">
+			</video>
+			
+			</div>
+		</div>
+	</div>
+
+	<!-- VERTICAL SPACING -->
+	<br><br>
+
+	<!-- ROW FOR RESPONSES -->
+	<div class='row'>
+		<div class='col-xs-6'>
+			<div class='text-center'>
+				<div class='form-group'>
+					<FORM method="POST">
+                        <button type="submit" id='btn1' title="You haven't watched the videos!" name="choice" value="Video 1" class="btn btn-success" disabled>Video 1</button>
+					</FORM>
+				</div>
+			</div>
+		</div>
+		<div class='col-xs-6'>
+			<div class='text-center'>
+				<div class='form-group'>
+					<FORM method="POST">
+						<button type="submit" id='btn2' title="You haven't watched the videos!" name="choice" value="Video 2" class="btn btn-success" disabled>Video 2</button>
+					</FORM>
+				</div>
+			</div>
+		</div>
+	</div>
+			
+</div>
+
+<!-- js for checking if videos have been watched -->
+<script type='text/javascript'>
+    
+    window.v1_ended = 0;
+    window.v2_ended = 0;
+
+    document.getElementById('v1').addEventListener('ended',myHandler1,false);
+    document.getElementById('v2').addEventListener('ended',myHandler2,false);
+
+    function myHandler1() {
+        window.v1_ended = 1;
+        comparator();
+        }
+
+    function myHandler2() {
+        window.v2_ended = 1;
+        comparator();
+        }
+
+    function comparator() { 
+    both_ended =  window.v1_ended * window.v2_ended;
+    if (both_ended) {
+        document.getElementById('btn1').disabled = false;
+        document.getElementById('btn2').disabled = false;
+        window.v1_ended = 0;
+        window.v2_ended = 0;
+        }
+    }
+    
+</script>
+
+{% endblock %}
+
+

@@ -1,0 +1,48 @@
+{% extends "logged_in.html" %}
+
+{% block content %}
+
+<div class='container'>
+
+      <div class="page-header">
+		<div class='text-center'>
+        <h1>Final Reminder</h1><br>
+		<h4>Please read carefully...</h4>
+		</div>
+      </div>
+
+	<!-- ROW FOR OVERVIEW -->	
+	<div class='row'>
+		<div class='col-xs-2'></div>
+		<div class='col-xs-8'>
+			<h3>
+				<ul>
+					<li>Put yourself into the mindset of the driver</li><br>
+					<li>Watch both videos</li><br>
+					<li>Vote for the most demanding situation – in which would you feel more likely to miss a critical event?</li><br>
+					<li>Sometimes there won't be much difference in demand between the situations, make a decision anyway</li><br>
+					<li>Stop if you start to feel tired</li><br>
+					<li>Next time you login to take part, you can just press the 'Compare' link in the navigation bar above, instead of reading through the instructions again</li>
+				</ul>
+			</h3>
+		</div>
+		<div class='col-xs-2'></div>
+	</div>
+
+	<br>
+	<!-- ROW for button/link to examples -->
+	<div class='row'>
+		<div class='col-xs-2'></div>
+		<div class='col-xs-8'>
+		<div class='form-group'>
+			<FORM method="POST">
+				<button type="submit" value="start_experiment" class="btn btn-danger btn-block btn-lg">Start the experiment</button>
+			</FORM>
+		</div>
+		</div>
+		<div class='col-xs-2'></div>
+	</div>
+
+</div>
+
+{% endblock %}

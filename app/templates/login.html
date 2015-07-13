@@ -1,0 +1,39 @@
+<!-- extend from base layout -->
+{% extends "bootstrap/base.html" %}
+
+{% block navbar %}{% endblock navbar %}
+
+{% block content %}
+
+<div class="container">
+
+      <div class="page-header">
+        <h1>Sign In</h1><br>
+		<p>Enter your details below</p>
+      </div>
+	
+	
+  <div class="row">
+        <!-- <div class="col-xs-4">One third</div> -->
+        <div class="col-xs-12">
+
+			<form method='POST'>
+			<div class="form-group">
+				<label>Username</label><br>
+				<input type='text' name='username'><br>
+			</div>
+			<div class="form-group">
+				<label>Password</label><br>
+				<input type='password' name='password'><br>
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-default">Sign In</button>
+		     	<!--<input type='submit' name='Sign In' value='Sign In'>-->
+			</div>
+
+			</form>
+		</div>
+        <!-- <div class="col-xs-4">One third</div> -->
+   </div> 
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "logged_in.html" %}
+
+{% block content %}
+
+<div class='container'>
+
+      <div class="page-header">
+		<div class='text-center'>
+        <h1>Instructions</h1><br>
+		<h4>What do you need to do?</h4>
+		</div>
+      </div>
+
+	<!-- ROW FOR OVERVIEW -->	
+	<div class='row'>
+		<div class='col-xs-2'></div>
+		<div class='col-xs-8'>
+		<div class='row-success text-center'>
+		<br>
+			<h3>Overview</h3>
+		<br>
+		</div>
+		<h4>Most road traffic accidents happen when a driver fails to detect a critical event, like another car turning into their path. This is due to a neurological limitation common to all people: we have a finite amount of perceptual processing power, meaning that in a complicated scene we are able to process only a fraction of the available visual information. 
+			<br><br>
+			The aim of this study is to discover what makes some driving situations more demanding than others, in other words: what about a situation makes detecting critical events more difficult?</h4>
+		</div>
+		<div class='col-xs-2'></div>
+	</div>
+
+	<br>
+
+	<!-- ROW FOR TASK DESCRIPTION -->
+	<div class='row'>
+		<div class='col-xs-2'></div>
+		<div class='col-xs-8'>
+		<div class='row-success text-center'>
+		<br>
+			<h3>Your Task</h3>
+		<br>
+		</div>
+		<h4>We'll be asking what kind of driving situations you find demanding. You'll be presented with two short video clips, around two seconds long, taken from a driver's point-of-view driving in a city. We want you to watch both videos and vote for which situation you'd find more demanding as a driver, Video 1 or Video 2, by pressing the vote button under that video. To help with this please put yourself in the mindset of the driver as you watch the videos!
+			<br><br>
+		When you have voted for a video, a new pair of videos will be presented for you to watch. Keep watching and voting for the most demanding video as long as you feel comfortable - if you start to feel fatigued and can't concentrate fully on the task, take a break and come back another time. The more votes you make the better it is for our experiment!
+		<br><br>
+		To get a feel for the task, do some example comparisons by pressing the button below. You can only vote for the most demanding video once you've watched both videos on the page. Once you feel comfortable with the task, continue onto the proper experiment. </h4>
+		</div>
+		<div class='col-xs-2'></div>
+	</div>
+
+	<br>
+
+	<!-- ROW for button/link to examples -->
+	<div class='row'>
+		<div class='col-xs-2'></div>
+		<div class='col-xs-8'>
+		<div class='form-group'>
+			<FORM method="POST">
+				<button type="submit" value="example" class="btn btn-primary btn-block btn-lg">Let's do some examples</button>
+			</FORM>
+		</div>
+		</div>
+		<div class='col-xs-2'></div>
+	</div>
+
+</div>
+
+{% endblock %}
