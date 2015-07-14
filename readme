@@ -1,6 +1,5 @@
 flask web application
 
-dependencies (so far)
+dependencies
 flask 0.9
 flask-login
-flask-bootstrap 3.3.5.2
