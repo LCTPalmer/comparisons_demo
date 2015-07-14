@@ -13,7 +13,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 db_address = 'database/pairwise_comparisons.db'
 m = MyDB(db_address)
-if os.path.isfile(os.path.abspath('database/dump.sql')):#update the db with dump file data
+if os.path.isfile(os.path.abspath('database/dump.sql')):#update the db with dump file data (can keep .sql file in .git during dev)
     print 'Building db from dump.sql .....'
     m.build_db(os.path.abspath('database/dump.sql'))
 
