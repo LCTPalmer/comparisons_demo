@@ -13,7 +13,12 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 db_address = 'database/pairwise_comparisons.db'
 m = MyDB(db_address)
+<<<<<<< HEAD
 if os.path.isfile(os.path.abspath('database/dump.sql')):#update the db with dump file data (can keep .sql file in .git during dev)
+=======
+#update the db with dump file data (during development across machines - can keep .sql file in .git)
+if os.path.isfile(os.path.abspath('database/dump.sql')):
+>>>>>>> 2f98fd2d20b57666ff0a7908a21a74c279094bae
     print 'Building db from dump.sql .....'
     m.build_db(os.path.abspath('database/dump.sql'))
 
@@ -107,6 +112,14 @@ def remember():
 @login_required
 def comparisons():
     
+    if request.method=='GET':
+
+        #choose image pair
+        image_pair = m.find_pair()
+        session['IMAGE_PAIR'] = image_pair
+        #render the html template
+        return render_template('comparisons.html', title='Active Image Comparison', image_pair=image_pair)
+
     if request.method=='POST':
 
         #retrieve the image pair from session variable
@@ -130,14 +143,6 @@ def comparisons():
         #redirect to another page to avoid form resubmission
         return redirect(url_for('comparison_processing'))
 
-    if request.method=='GET':
-
-        #choose image pair
-        image_pair = m.find_pair()
-        session['IMAGE_PAIR'] = image_pair
-        #render the html template
-        return render_template('comparisons.html', title='Active Image Comparison', image_pair=image_pair)
-
 @app.route('/comparison_processing')
 @login_required
 def comparison_processing():
@@ -149,8 +154,8 @@ def comparison_processing():
 @login_required
 def logout():
     logout_user()
-    m.dump_db()
     print 'dumping db to dump.sql file .....'
+    m.dump_db()
     return redirect(url_for('login'))
 
 if __name__=='__main__':

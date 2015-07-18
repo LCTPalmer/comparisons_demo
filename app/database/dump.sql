@@ -223,6 +223,12 @@ INSERT INTO "comparisons" VALUES(213,60,6,6,'340bcc34-ed4b-4e98-aa11-74c00398ecb
 INSERT INTO "comparisons" VALUES(214,28,83,28,'340bcc34-ed4b-4e98-aa11-74c00398ecbf');
 INSERT INTO "comparisons" VALUES(215,67,66,67,'340bcc34-ed4b-4e98-aa11-74c00398ecbf');
 INSERT INTO "comparisons" VALUES(216,81,66,66,'340bcc34-ed4b-4e98-aa11-74c00398ecbf');
+INSERT INTO "comparisons" VALUES(217,82,25,82,'22021d68-b490-4a8d-ba6c-d1b0e5b42167');
+INSERT INTO "comparisons" VALUES(218,61,73,73,'22021d68-b490-4a8d-ba6c-d1b0e5b42167');
+INSERT INTO "comparisons" VALUES(219,51,1,1,'d32dcdc9-f51b-4cb9-94c1-0418d2216511');
+INSERT INTO "comparisons" VALUES(220,7,36,7,'d32dcdc9-f51b-4cb9-94c1-0418d2216511');
+INSERT INTO "comparisons" VALUES(221,67,62,62,'d32dcdc9-f51b-4cb9-94c1-0418d2216511');
+INSERT INTO "comparisons" VALUES(222,29,81,29,'d32dcdc9-f51b-4cb9-94c1-0418d2216511');
 CREATE TABLE sessions (
     session_id integer primary key autoincrement not null,
     suuid text,
@@ -235,11 +241,14 @@ INSERT INTO "sessions" VALUES(2,'4c35663b-1c26-43a7-ba47-723e576a1a19',1,'2015-0
 INSERT INTO "sessions" VALUES(3,'62406679-9399-453f-828e-b32723041309',1,'2015-07-13 18:29:58.018784');
 INSERT INTO "sessions" VALUES(4,'57d7750f-b4a8-4529-a6e0-7a05dd7d9beb',1,'2015-07-13 19:12:45.115858');
 INSERT INTO "sessions" VALUES(5,'340bcc34-ed4b-4e98-aa11-74c00398ecbf',1,'2015-07-13 19:15:56.818710');
+INSERT INTO "sessions" VALUES(6,'22021d68-b490-4a8d-ba6c-d1b0e5b42167',1,'2015-07-17 10:13:46.615534');
+INSERT INTO "sessions" VALUES(7,'f2ee4bdf-bffb-4c93-976d-cce425d25f93',1,'2015-07-17 11:16:06.717877');
+INSERT INTO "sessions" VALUES(8,'d32dcdc9-f51b-4cb9-94c1-0418d2216511',1,'2015-07-17 11:23:28.553102');
 DELETE FROM "sqlite_sequence";
 INSERT INTO "sqlite_sequence" VALUES('videos',114);
 INSERT INTO "sqlite_sequence" VALUES('users',2);
-INSERT INTO "sqlite_sequence" VALUES('sessions',5);
-INSERT INTO "sqlite_sequence" VALUES('comparisons',216);
+INSERT INTO "sqlite_sequence" VALUES('sessions',8);
+INSERT INTO "sqlite_sequence" VALUES('comparisons',222);
 CREATE TABLE users (
     user_id integer primary key autoincrement not null,
     username text,
@@ -253,13 +262,13 @@ CREATE TABLE videos (
     filepath text not null,
 	num_comparisons	integer
 );
-INSERT INTO "videos" VALUES(1,'/static/videos/d13d_V1391090558_985.ogv',5);
+INSERT INTO "videos" VALUES(1,'/static/videos/d13d_V1391090558_985.ogv',6);
 INSERT INTO "videos" VALUES(2,'/static/videos/d12d_V1391161450_030.ogv',5);
 INSERT INTO "videos" VALUES(3,'/static/videos/d11d_V1391090407_033.ogv',2);
 INSERT INTO "videos" VALUES(4,'/static/videos/d11d_V1391090953_968.ogv',2);
 INSERT INTO "videos" VALUES(5,'/static/videos/d32dt_V1391088867_977.ogv',4);
 INSERT INTO "videos" VALUES(6,'/static/videos/d21d_V1391089090_964.ogv',3);
-INSERT INTO "videos" VALUES(7,'/static/videos/d11d_V1391089190_961.ogv',4);
+INSERT INTO "videos" VALUES(7,'/static/videos/d11d_V1391089190_961.ogv',5);
 INSERT INTO "videos" VALUES(8,'/static/videos/d21d_V1391089301_997.ogv',3);
 INSERT INTO "videos" VALUES(9,'/static/videos/d21d_V1391089161_003.ogv',3);
 INSERT INTO "videos" VALUES(10,'/static/videos/d11d_V1391089869_985.ogv',2);
@@ -277,18 +286,18 @@ INSERT INTO "videos" VALUES(21,'/static/videos/d11d_V1391160908_014.ogv',4);
 INSERT INTO "videos" VALUES(22,'/static/videos/d31d_V1391091141_992.ogv',10);
 INSERT INTO "videos" VALUES(23,'/static/videos/d41dt_V1391160750_015.ogv',3);
 INSERT INTO "videos" VALUES(24,'/static/videos/d22d_V1391090751_009.ogv',4);
-INSERT INTO "videos" VALUES(25,'/static/videos/d32d_V1391089618_019.ogv',4);
+INSERT INTO "videos" VALUES(25,'/static/videos/d32d_V1391089618_019.ogv',5);
 INSERT INTO "videos" VALUES(26,'/static/videos/d21d_V1391090647_976.ogv',3);
 INSERT INTO "videos" VALUES(27,'/static/videos/d12d_V1391089081_990.ogv',3);
 INSERT INTO "videos" VALUES(28,'/static/videos/d21d_V1391161251_002.ogv',8);
-INSERT INTO "videos" VALUES(29,'/static/videos/d21d_V1391089145_983.ogv',3);
+INSERT INTO "videos" VALUES(29,'/static/videos/d21d_V1391089145_983.ogv',4);
 INSERT INTO "videos" VALUES(30,'/static/videos/d21d_V1391160727_024.ogv',2);
 INSERT INTO "videos" VALUES(31,'/static/videos/d21d_V1391088295_974.ogv',3);
 INSERT INTO "videos" VALUES(32,'/static/videos/d21d_V1391091403_996.ogv',4);
 INSERT INTO "videos" VALUES(33,'/static/videos/d31d_V1391088808_993.ogv',3);
 INSERT INTO "videos" VALUES(34,'/static/videos/d11d_V1391160670_995.ogv',3);
 INSERT INTO "videos" VALUES(35,'/static/videos/d31d_V1391091133_995.ogv',1);
-INSERT INTO "videos" VALUES(36,'/static/videos/d21d_V1391089811_991.ogv',4);
+INSERT INTO "videos" VALUES(36,'/static/videos/d21d_V1391089811_991.ogv',5);
 INSERT INTO "videos" VALUES(37,'/static/videos/d23d_V1391090482_027.ogv',1);
 INSERT INTO "videos" VALUES(38,'/static/videos/d21d_V1391160865_992.ogv',3);
 INSERT INTO "videos" VALUES(39,'/static/videos/d12d_V1391090747_035.ogv',1);
@@ -303,7 +312,7 @@ INSERT INTO "videos" VALUES(47,'/static/videos/d41dt_V1391160754_011.ogv',3);
 INSERT INTO "videos" VALUES(48,'/static/videos/d21d_V1391089399_040.ogv',7);
 INSERT INTO "videos" VALUES(49,'/static/videos/d31dt_V1391088313_974.ogv',6);
 INSERT INTO "videos" VALUES(50,'/static/videos/d31dt_V1391090432_001.ogv',5);
-INSERT INTO "videos" VALUES(51,'/static/videos/d11dt_V1391160777_011.ogv',4);
+INSERT INTO "videos" VALUES(51,'/static/videos/d11dt_V1391160777_011.ogv',5);
 INSERT INTO "videos" VALUES(52,'/static/videos/d22d_V1391161228_012.ogv',2);
 INSERT INTO "videos" VALUES(53,'/static/videos/d41d_V1391089271_986.ogv',4);
 INSERT INTO "videos" VALUES(54,'/static/videos/d12_V1391090608_015.ogv',1);
@@ -313,19 +322,19 @@ INSERT INTO "videos" VALUES(57,'/static/videos/d12d_V1391090594_976.ogv',3);
 INSERT INTO "videos" VALUES(58,'/static/videos/d31dt_V1391090427_977.ogv',7);
 INSERT INTO "videos" VALUES(59,'/static/videos/d31d_V1391091038_973.ogv',2);
 INSERT INTO "videos" VALUES(60,'/static/videos/d13d_V1391091541_997.ogv',4);
-INSERT INTO "videos" VALUES(61,'/static/videos/d11d_V1391089511_992.ogv',3);
-INSERT INTO "videos" VALUES(62,'/static/videos/d31d_V1391091129_993.ogv',5);
+INSERT INTO "videos" VALUES(61,'/static/videos/d11d_V1391089511_992.ogv',4);
+INSERT INTO "videos" VALUES(62,'/static/videos/d31d_V1391091129_993.ogv',6);
 INSERT INTO "videos" VALUES(63,'/static/videos/d23d_V1391090477_976.ogv',3);
 INSERT INTO "videos" VALUES(64,'/static/videos/d21d_V1391160916_991.ogv',7);
 INSERT INTO "videos" VALUES(65,'/static/videos/d11d_V1391089227_008.ogv',6);
 INSERT INTO "videos" VALUES(66,'/static/videos/d41d_V1391089267_972.ogv',6);
-INSERT INTO "videos" VALUES(67,'/static/videos/d12d_V1391090695_974.ogv',8);
+INSERT INTO "videos" VALUES(67,'/static/videos/d12d_V1391090695_974.ogv',9);
 INSERT INTO "videos" VALUES(68,'/static/videos/d21d_V1391090452_037.ogv',3);
 INSERT INTO "videos" VALUES(69,'/static/videos/d11d_V1391088279_038.ogv',4);
 INSERT INTO "videos" VALUES(70,'/static/videos/d11d_V1391089230_989.ogv',4);
 INSERT INTO "videos" VALUES(71,'/static/videos/d21d_V1391088961_985.ogv',5);
 INSERT INTO "videos" VALUES(72,'/static/videos/d21d_V1391089417_986.ogv',4);
-INSERT INTO "videos" VALUES(73,'/static/videos/d31d_V1391089434_021.ogv',5);
+INSERT INTO "videos" VALUES(73,'/static/videos/d31d_V1391089434_021.ogv',6);
 INSERT INTO "videos" VALUES(74,'/static/videos/d31d_V1391091286_997.ogv',2);
 INSERT INTO "videos" VALUES(75,'/static/videos/d21dt_V1391161847_006.ogv',2);
 INSERT INTO "videos" VALUES(76,'/static/videos/d31d_V1391091137_988.ogv',7);
@@ -333,8 +342,8 @@ INSERT INTO "videos" VALUES(77,'/static/videos/d21d_V1391161578_999.ogv',4);
 INSERT INTO "videos" VALUES(78,'/static/videos/d31d_V1391091188_992.ogv',3);
 INSERT INTO "videos" VALUES(79,'/static/videos/d11dt_V1391160773_012.ogv',4);
 INSERT INTO "videos" VALUES(80,'/static/videos/d22dt_V1391089501_998.ogv',4);
-INSERT INTO "videos" VALUES(81,'/static/videos/d21d_V1391088825_975.ogv',2);
-INSERT INTO "videos" VALUES(82,'/static/videos/d13d_V1391090669_975.ogv',5);
+INSERT INTO "videos" VALUES(81,'/static/videos/d21d_V1391088825_975.ogv',3);
+INSERT INTO "videos" VALUES(82,'/static/videos/d13d_V1391090669_975.ogv',6);
 INSERT INTO "videos" VALUES(83,'/static/videos/d13d_V1391091357_997.ogv',9);
 INSERT INTO "videos" VALUES(84,'/static/videos/d21d_V1391089372_968.ogv',1);
 INSERT INTO "videos" VALUES(85,'/static/videos/d21d_V1391088330_996.ogv',3);
