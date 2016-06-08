@@ -16,19 +16,19 @@ def get_ts(m):
             new_sess_ind = ind
             break
 
-   #TRUESKILL
-   #how many vids are there
+    #TRUESKILL
+    #how many vids are there
     sql_str = '''SELECT video_id, filepath
                 FROM videos'''
     video_list = sqlite3.connect(m.address).cursor().execute(sql_str).fetchall()
     num_videos = len(video_list)
 
-#set up initial ts rankings 
+    #set up initial ts rankings 
     ts_list = []
     for video in video_list:
         ts_list.append(ts.Rating())
 
-#go through comparisons, updating the ts_ratings
+    #go through comparisons, updating the ts_ratings
     for ind, comp in enumerate(full_list):
 
         #if this index is the first of the last session, log the before list
@@ -42,7 +42,7 @@ def get_ts(m):
         elif winner == v2:
             nv2, nv1 = ts.rate_1vs1(ts_list[v2], ts_list[v1])
         
-#update the ratings
+        #update the ratings
         ts_list[v1], ts_list[v2] = nv1, nv2
 
     #turn into video_id rankings
@@ -54,3 +54,5 @@ def get_ts(m):
 
     return sorted_before, sorted_after
 
+def embed_bokeh():
+    pass

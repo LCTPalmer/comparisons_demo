@@ -178,9 +178,19 @@ def logout():
     print 'dumping db to dump.sql file .....'
     m.dump_db()
 
-    comp_list = feedback.get_ts(m)
-    print comp_list[0], '\n\n\n', comp_list[1]
-#return render_template('feedback.html', before=before, after=after) #maybe BOKEH?
+
+    return redirect(url_for('feedback_page'))
+
+@app.route("/feedback")
+def feedback_page():
+    #get ts ratings befor and after
+    ts_before, ts_after = feedback.get_ts(m)
+
+    #embed into bokeh html
+    #bokeh_template = os.path.abspath('templates/bokeh_template.html')
+    #bokeh_fout = os.path.abspath('templates/bokeh_embedded.html')
+    #feedback.write_bokeh_page(ts_before, ts_after, bokeh_template, bokeh_fout)
+    print ts_before, '\n\n\n', ts_after
     return redirect(url_for('login'))
 
 if __name__=='__main__':
