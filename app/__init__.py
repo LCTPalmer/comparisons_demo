@@ -53,8 +53,12 @@ def registration():
         elif request.form['submit'] == 'register':
             username = request.form['username']
             password = request.form['password']
-            #driver_status = request.form['driver_status']
-            m.register_user(username, password)
+            driver_status = request.form['driver_status']
+            if driver_status == 'Yes':
+                license = True
+            else:
+                license = False
+            m.register_user(username, password, license)
             return redirect(url_for('login'))
 
 #---login page---#

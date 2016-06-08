@@ -27,5 +27,6 @@ create table users (
     user_id integer primary key autoincrement not null,
     username text,
     password text,
+    license bool, 
 	foreign key(user_id) references sessions(user_id)
 );

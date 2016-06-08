@@ -27,8 +27,8 @@ with sqlite3.connect(db_filename) as conn:
             conn.execute("""insert into videos(filepath, num_comparisons) values(?,?)""", (filepath, 0))
 
         #populate users
-        conn.execute('INSERT INTO users(username, password) VALUES (?,?)', ('admin', 'admin'))
-        conn.execute('INSERT INTO users(username, password) VALUES (?,?)', ('user1', 'superpassword'))
+        conn.execute('INSERT INTO users(username, password, license) VALUES (?,?,?)', ('admin', 'admin', True))
+        #conn.execute('INSERT INTO users(username, password) VALUES (?,?)', ('user1', 'superpassword'))
 
         
     else:

@@ -1,4 +1,4 @@
 app/static/videos
 app/database/pairwise_comparisons.db
-**.pyc
-**.swp
+app/*.pyc
+app/*.swp

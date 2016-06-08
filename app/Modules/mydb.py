@@ -64,12 +64,12 @@ class MyDB():
         engine.commit()
         engine.close()
 
-    def register_user(self, username, password):
+    def register_user(self, username, password, license):
         #takes in instance form input [username and password]
-        sql_str = '''INSERT INTO users(username,password) 
-                     VALUES (?,?)'''   
+        sql_str = '''INSERT INTO users(username,password,license) 
+                     VALUES (?,?,?)'''   
         engine = sqlite3.connect(self.address)
-        c = engine.cursor().execute(sql_str, (username, password))
+        c = engine.cursor().execute(sql_str, (username, password, license))
         engine.commit()
         engine.close()
 
