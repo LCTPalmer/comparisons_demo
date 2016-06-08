@@ -13,12 +13,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 db_address = 'database/pairwise_comparisons.db'
 m = MyDB(db_address)
-<<<<<<< HEAD
-if os.path.isfile(os.path.abspath('database/dump.sql')):#update the db with dump file data (can keep .sql file in .git during dev)
-=======
-#update the db with dump file data (during development across machines - can keep .sql file in .git)
 if os.path.isfile(os.path.abspath('database/dump.sql')):
->>>>>>> 2f98fd2d20b57666ff0a7908a21a74c279094bae
     print 'Building db from dump.sql .....'
     m.build_db(os.path.abspath('database/dump.sql'))
 
@@ -47,7 +42,7 @@ def login():
     #serve the login form
     if request.method=='GET':
         return render_template('login.html')
-    
+
     #get user details from form
     if request.method=='POST':
         username = request.form['username']
@@ -111,7 +106,7 @@ def remember():
 @app.route('/comparisons', methods=['GET', 'POST'])
 @login_required
 def comparisons():
-    
+
     if request.method=='GET':
 
         #choose image pair
@@ -127,7 +122,7 @@ def comparisons():
         session.pop('IMAGE_PAIR', None)
         v1_id = image_pair[0][0]
         v2_id = image_pair[1][0]
-        
+
         #update the comparison matrix
         if request.form['choice']=='Video 1':
             comp_row = {'v1' : v1_id, 'v2' : v2_id, 'winner' : v1_id, 'suuid' : session['SUUID']}
@@ -148,7 +143,7 @@ def comparisons():
 def comparison_processing():
     #helper redirect function so that refresh doesn't re-post info
     return redirect(url_for('comparisons'))
-    
+
 #---logout page---#
 @app.route("/logout")
 @login_required
@@ -156,6 +151,9 @@ def logout():
     logout_user()
     print 'dumping db to dump.sql file .....'
     m.dump_db()
+
+#before, after = feedback.get_ts_change()
+#return render_template('feedback.html', before=before, after=after) #maybe BOKEH?
     return redirect(url_for('login'))
 
 if __name__=='__main__':
