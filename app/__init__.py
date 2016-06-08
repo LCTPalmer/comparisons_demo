@@ -35,8 +35,25 @@ def load_user(user_id):
 ###VIEWS###
 ###--------------------------------------------------------------------------------------------------------------
 
-#---login page---#
+#---registration page---#
 @app.route('/', methods=['GET', 'POST'])
+def registration():
+    #serve the reg form
+    if request.method == 'GET':
+        return render_template('registration.html')
+
+    #get new user details
+    elif request.method == 'POST':
+
+        #if already registered, bypass the form to login page
+        if request.form['submit'] == 'already_registered':
+            return redirect(url_for('login'))
+        
+        #take in new user and add to user table
+        elif request.form['submit'] == 'register':
+            return redirect(url_for('login'))
+
+#---login page---#
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     #serve the login form
