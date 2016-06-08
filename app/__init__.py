@@ -4,6 +4,7 @@ from uuid import uuid4
 from datetime import datetime
 from Modules.mydb import MyDB
 from Modules.user import User
+from Modules import feedback
 import sqlite3, os, pdb
 
 ###SETUP###
@@ -177,7 +178,8 @@ def logout():
     print 'dumping db to dump.sql file .....'
     m.dump_db()
 
-#before, after = feedback.get_ts_change()
+    comp_list = feedback.get_ts(m)
+    print comp_list[0], '\n\n\n', comp_list[1]
 #return render_template('feedback.html', before=before, after=after) #maybe BOKEH?
     return redirect(url_for('login'))
 

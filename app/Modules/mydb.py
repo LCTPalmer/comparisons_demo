@@ -4,7 +4,7 @@ import sqlite3, os
 class MyDB():
 
     def __init__(self, db_address):
-        self.address = db_address
+        self.address = os.path.abspath(db_address)
 
     ###DB FUNCTIONS###
     def find_pair(self):
