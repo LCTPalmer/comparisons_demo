@@ -1,0 +1,48 @@
+<!-- extend from base layout -->
+{% extends "bootstrap/base.html" %}
+
+{% block navbar %}{% endblock navbar %}
+
+{% block content %}
+
+<div class="container">
+
+      <div class="page-header">
+        <h1>Register</h1><br>
+		<p>Enter your details below</p>
+      </div>
+	
+	
+  <div class="row">
+        <!-- <div class="col-xs-4">One third</div> -->
+        <div class="col-xs-12">
+
+			<form method='POST'>
+			<div class="form-group">
+				<button type="submit" name="submit" class="btn btn-success" value="already_registered">Already Registered</button>
+			</div>
+			<div class="form-group">
+				<label>Username</label><br>
+				<input type='text' name='username'><br>
+			</div>
+			<div class="form-group">
+				<label>Password</label><br>
+				<input type='password' name='password'><br>
+			</div>
+			<div class="form-group">
+				<label>Do you have a driving license?</label><br>
+                <select name="driver_status" title="Please select">
+                    <option>No</option>
+                    <option>Yes</option>
+                </select>
+			</div>
+			<div class="form-group">
+				<button type="submit" name="submit" class="btn btn-default" value="register">Register</button>
+			</div>
+
+			</form>
+		</div>
+        <!-- <div class="col-xs-4">One third</div> -->
+   </div> 
+
+{% endblock %}
