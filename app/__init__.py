@@ -51,6 +51,10 @@ def registration():
         
         #take in new user and add to user table
         elif request.form['submit'] == 'register':
+            username = request.form['username']
+            password = request.form['password']
+            #driver_status = request.form['driver_status']
+            m.register_user(username, password)
             return redirect(url_for('login'))
 
 #---login page---#

@@ -2,7 +2,7 @@ import sqlite3, os
 
 ###SQLITE3 DATABASE CLASS###
 class MyDB():
-    
+
     def __init__(self, db_address):
         self.address = db_address
 
@@ -25,7 +25,7 @@ class MyDB():
                 ORDER BY RANDOM() 
                 LIMIT 2'''
         return sqlite3.connect(self.address).cursor().execute(sql_str).fetchall()
-        
+
     def write_comparison_row(self, row_dict):
         #input is dict e.g. {'video1': 2, 'video2': 3, 'winner': 2, 'session_id': 2}
         sql_str = '''INSERT INTO comparisons(v1,v2,winner,suuid) 
@@ -64,6 +64,15 @@ class MyDB():
         engine.commit()
         engine.close()
 
+    def register_user(self, username, password):
+        #takes in instance form input [username and password]
+        sql_str = '''INSERT INTO users(username,password) 
+                     VALUES (?,?)'''   
+        engine = sqlite3.connect(self.address)
+        c = engine.cursor().execute(sql_str, (username, password))
+        engine.commit()
+        engine.close()
+
     def authenticate_user(self, username, password):
         #takes in instance form input [username and password]
         sql_str = '''SELECT user_id 
@@ -80,7 +89,7 @@ class MyDB():
         with open(filename, 'wb') as f:
             for line in con.iterdump():
                 f.write('%s\n' % line)
-    
+
     def build_db(self, dump_file):
         #rebuild the databse from the dump sql file
         with open(dump_file, 'rb') as f:
