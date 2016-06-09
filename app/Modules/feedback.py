@@ -15,6 +15,7 @@ def get_ts(m):
     #get index of first comparisonin last session
     last_suuid = full_list[-1][2]
     sess_vids_compared = [] #container for videos compared in the most recent session
+    new_sess_ind = 0 # initialise
     for ind, comp in enumerate(reversed(full_list)):
         if comp[2] == last_suuid:
             sess_vids_compared.append(comp[0])
@@ -41,11 +42,11 @@ def get_ts(m):
 
     #go through comparisons, updating the ts_ratings
     en_start = 0 #new_sess_ind - 20 #so it looks like more of an impact?
-    for ind, comp in enumerate(full_list, start=en_start):
+    for ind, comp in enumerate(full_list[en_start:]):
 
         #if this index is the first of the last session, log the before list
         if ind == new_sess_ind:
-            before_ts_list = copy.copy(ts_list)
+            before_ts_list = copy.deepcopy(ts_list)
 
         #else update the ratings again 
         v1, v2, winner = comp[0]-1, comp[1]-1, comp[3]-1 #TODO test if need -1 for zeros_based indexing

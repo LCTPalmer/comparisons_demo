@@ -11,19 +11,15 @@ class MyDB():
         #ACTIVE LEARNING DROPS IN HERE :)#
         #here just choose two instances with lowest number of comparisons
         #output 2 video_ids with lowest num_comparisons
-#        sql_str = '''SELECT video_id, filepath
-#                FROM (
-#                    SELECT *
-#                    FROM videos
-#                    ORDER BY num_comparisons ASC 
-#                    LIMIT 20 
-#                    )
-#                ORDER BY RANDOM() 
-#                LIMIT 2'''
         sql_str = '''SELECT video_id, filepath
                 FROM videos
+                WHERE num_comparisons = (SELECT MIN(num_comparisons) FROM videos) 
                 ORDER BY RANDOM() 
                 LIMIT 2'''
+#        sql_str = '''SELECT video_id, filepath
+#                FROM videos
+#                ORDER BY RANDOM() 
+#                LIMIT 2'''
         return sqlite3.connect(self.address).cursor().execute(sql_str).fetchall()
 
     def write_comparison_row(self, row_dict):

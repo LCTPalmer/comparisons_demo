@@ -183,6 +183,7 @@ def logout():
 def feedback_page():
     #get ts ratings before and after the last contribution
     ts_before, ts_after = feedback.get_ts(m)
+    #print ts_before, '\n\n', ts_after
 
     #embed into bokeh html
     js, div = feedback.get_bokeh_js(ts_before, ts_after)
