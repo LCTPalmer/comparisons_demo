@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Rating feedback</title>
+
+        <!-- css -->
+        <style> 
+            #content {
+                width: 50%;
+                min-height: 100%;
+                float: left;
+            }
+            #nav {
+                line-height:30px;
+                height:100%;
+                width:25%;
+                float:left;
+                padding:5px; 
+            }
+        </style>
+
+        <!--bokeh style-->
+        <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.10.0.min.css" type="text/css" />
+
+        <!-- bokehjs -->
+        <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.10.0.min.js"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+
+    </head>
+
+
+    <body>
+        <div id="nav">
+        </div>
+
+        <div id="content">
+            <!--bokeh plot-->
+            <script
+    src="feedback_bokeh.js"
+    id="cdb69bd6-ad1d-4a86-96a1-860db835f510"
+    async="true"
+    data-bokeh-data="static"
+    data-bokeh-modelid="6985b043-5c0f-4d1d-8631-cfc94c7cfa61"
+    data-bokeh-modeltype="Plot"
+    data-bokeh-loglevel="info"
+></script>
+        </div>
+    </body>
+</html>
+
+ 
+

@@ -1,5 +1,10 @@
 import os, copy, sqlite3, numpy as np, trueskill as ts
 
+#plotting
+from bokeh.plotting import figure, ColumnDataSource
+from bokeh.models import HoverTool, PanTool, WheelZoomTool
+from bokeh.embed import components
+
 def get_ts(m):
 
     #het the comparisons from the db
@@ -8,6 +13,7 @@ def get_ts(m):
     full_list = sqlite3.connect(m.address).cursor().execute(sql_str).fetchall()
 
     #get index of first comparisonin last session
+    #TODO this in reverse so can swap suuid with userid (if using new db)
     last_suuid = full_list[-1][2]
     for ind, comp in enumerate(full_list):
         if comp[2] != last_suuid:
@@ -41,18 +47,23 @@ def get_ts(m):
             nv1, nv2 = ts.rate_1vs1(ts_list[v1], ts_list[v2])
         elif winner == v2:
             nv2, nv1 = ts.rate_1vs1(ts_list[v2], ts_list[v1])
-        
+
         #update the ratings
         ts_list[v1], ts_list[v2] = nv1, nv2
 
     #turn into video_id rankings
     before_ts_list = [(ii+1, r.mu) for ii, r in enumerate(before_ts_list)]
     after_ts_list = [(ii+1, r.mu) for ii,r in enumerate(ts_list)]
-    
+
     sorted_before = sorted(before_ts_list, key = lambda x: x[1])
     sorted_after = sorted(after_ts_list, key = lambda x: x[1])
 
     return sorted_before, sorted_after
 
-def embed_bokeh():
-    pass
+def get_bokeh_js(ts_before, ts_after):
+    '''turn figure into js and tag for embedding'''
+    p = figure(plot_width=400, plot_height=400,
+           title=None, toolbar_location="below")
+    p.circle([1, 2, 3, 4, 5], [2, 5, 8, 2, 7], size=10)
+
+    return components(p) #(js_script, div)
