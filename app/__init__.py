@@ -184,7 +184,6 @@ def feedback_page():
     #get ts ratings before and after the last contribution
     ts_before, ts_after = feedback.get_ts(m)
 
-    print ts_before
     #embed into bokeh html
     js, div = feedback.get_bokeh_js(ts_before, ts_after)
     return render_template('feedback.html', js=js, div=div)

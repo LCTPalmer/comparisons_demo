@@ -40,7 +40,8 @@ def get_ts(m):
             ts_vid['compared_in_sess'] = False
 
     #go through comparisons, updating the ts_ratings
-    for ind, comp in enumerate(full_list):
+    en_start = 0 #new_sess_ind - 20 #so it looks like more of an impact?
+    for ind, comp in enumerate(full_list, start=en_start):
 
         #if this index is the first of the last session, log the before list
         if ind == new_sess_ind:
