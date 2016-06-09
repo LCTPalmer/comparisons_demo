@@ -13,26 +13,31 @@ def get_ts(m):
     full_list = sqlite3.connect(m.address).cursor().execute(sql_str).fetchall()
 
     #get index of first comparisonin last session
-    #TODO this in reverse so can swap suuid with userid (if using new db)
     last_suuid = full_list[-1][2]
-    for ind, comp in enumerate(full_list):
-        if comp[2] != last_suuid:
-            pass
+    sess_vids_compared = [] #container for videos compared in the most recent session
+    for ind, comp in enumerate(reversed(full_list)):
+        if comp[2] == last_suuid:
+            sess_vids_compared.append(comp[0])
+            sess_vids_compared.append(comp[1])
         else:
-            new_sess_ind = ind
+            new_sess_ind = len(full_list) - ind
             break
+    sess_vids_compared = list(set(sess_vids_compared))
 
     #TRUESKILL
     #how many vids are there
     sql_str = '''SELECT video_id, filepath
                 FROM videos'''
     video_list = sqlite3.connect(m.address).cursor().execute(sql_str).fetchall()
-    num_videos = len(video_list)
 
     #set up initial ts rankings 
-    ts_list = []
-    for video in video_list:
-        ts_list.append(ts.Rating())
+    ts_list = [{'video_id':v[0], 'filepath':v[1], 'rating':ts.Rating()} for v in video_list]
+    #add in boolean if compared
+    for ts_vid in ts_list:
+        if ts_vid['video_id'] in sess_vids_compared:
+            ts_vid['compared_in_sess'] = True
+        else:
+            ts_vid['compared_in_sess'] = False
 
     #go through comparisons, updating the ts_ratings
     for ind, comp in enumerate(full_list):
@@ -42,23 +47,16 @@ def get_ts(m):
             before_ts_list = copy.copy(ts_list)
 
         #else update the ratings again 
-        v1, v2, winner = comp[0]-1, comp[1]-1, comp[3]-1 #-1 for zeros_based indexing
+        v1, v2, winner = comp[0]-1, comp[1]-1, comp[3]-1 #TODO test if need -1 for zeros_based indexing
         if winner == v1:
-            nv1, nv2 = ts.rate_1vs1(ts_list[v1], ts_list[v2])
+            nv1, nv2 = ts.rate_1vs1(ts_list[v1]['rating'], ts_list[v2]['rating'])
         elif winner == v2:
-            nv2, nv1 = ts.rate_1vs1(ts_list[v2], ts_list[v1])
+            nv2, nv1 = ts.rate_1vs1(ts_list[v2]['rating'], ts_list[v1]['rating'])
 
         #update the ratings
-        ts_list[v1], ts_list[v2] = nv1, nv2
+        ts_list[v1]['rating'], ts_list[v2]['rating'] = nv1, nv2
 
-    #turn into video_id rankings
-    before_ts_list = [(ii+1, r.mu) for ii, r in enumerate(before_ts_list)]
-    after_ts_list = [(ii+1, r.mu) for ii,r in enumerate(ts_list)]
-
-    sorted_before = sorted(before_ts_list, key = lambda x: x[1])
-    sorted_after = sorted(after_ts_list, key = lambda x: x[1])
-
-    return sorted_before, sorted_after
+    return before_ts_list, ts_list 
 
 def get_bokeh_js(ts_before, ts_after):
     '''turn figure into js and tag for embedding'''

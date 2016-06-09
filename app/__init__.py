@@ -136,7 +136,7 @@ def comparisons():
     if request.method=='GET':
 
         #choose image pair
-        image_pair = m.find_pair()
+        image_pair = m.find_pair() # TODO find random pair so equal amount of comparisons!
         session['IMAGE_PAIR'] = image_pair
         #render the html template
         return render_template('comparisons.html', title='Active Image Comparison', image_pair=image_pair)
@@ -184,6 +184,7 @@ def feedback_page():
     #get ts ratings before and after the last contribution
     ts_before, ts_after = feedback.get_ts(m)
 
+    print ts_before
     #embed into bokeh html
     js, div = feedback.get_bokeh_js(ts_before, ts_after)
     return render_template('feedback.html', js=js, div=div)
