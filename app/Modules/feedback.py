@@ -33,7 +33,7 @@ def get_ts(m):
     video_list = sqlite3.connect(m.address).cursor().execute(sql_str).fetchall()
 
     #set up initial ts rankings 
-    ts_list = [{'video_id':v[0], 'filepath':v[1], 'rating':ts.Rating()} for v in video_list]
+    ts_list = [{'video_id':v[0], 'filepath':v[1], 'rating':ts.Rating(mu=25+np.random.randn())} for v in video_list]
     #add in boolean if compared
     for ts_vid in ts_list:
         if ts_vid['video_id'] in sess_vids_compared:
@@ -66,9 +66,9 @@ def get_bokeh_js(ts_before, ts_after):
     
     #turn list of dicts into data source for plot
     ratings_before = [r['rating'].mu for r in ts_before if r['compared_in_sess']]
-    y_pos_before = [0 for r in ts_before if r['compared_in_sess']]
+    y_pos_before = [0] * len(ratings_before) # [0 for r in ts_before if r['compared_in_sess']]
     ratings_after = [r['rating'].mu for r in ts_after if r['compared_in_sess']]
-    y_pos_after = [1 for r in ts_after if r['compared_in_sess']]
+    y_pos_after = [1] * len(ratings_after) #[1 for r in ts_after if r['compared_in_sess']]
     filepaths =  [r['filepath'] for r in ts_after if r['compared_in_sess']]
     source = ColumnDataSource({'ratings_after': ratings_after,  'y_pos_after': y_pos_after,
                                'ratings_before': ratings_before, 'y_pos_before': y_pos_before,
@@ -80,14 +80,14 @@ def get_bokeh_js(ts_before, ts_after):
                 </video> 
             """
 
-    p = figure(tools=[HoverTool(names=['vid'], tooltips=tooltip_str), PanTool(), WheelZoomTool()], 
+    p = figure(tools=[HoverTool(names=['vid'], tooltips=tooltip_str), PanTool(), 'xwheel_zoom'], 
                 plot_width=1200, plot_height=500,
                 x_range = (0, 45), y_range = (-0.5, 1.5),
                 toolbar_location="below")
     p.circle('ratings_before', 'y_pos_before', name='vid', source=source, size=10, alpha = .7)
     p.circle('ratings_after', 'y_pos_after', name='vid', source=source, size=10, color='red', alpha = .7)
-    p.text(5, 0, text=["Before"])
-    p.text(5, 1, text=["After"])
+    p.text(5, 0, text=["Before your session"])
+    p.text(5, 1, text=["After your session"])
     for rb, ra in zip(ratings_before, ratings_after):
         p.line([rb, ra], [0, 1], color='black', line_dash=[5,5]) 
 
