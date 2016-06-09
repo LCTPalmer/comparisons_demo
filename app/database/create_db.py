@@ -8,7 +8,7 @@ db_is_new = not os.path.exists(db_filename)
 #get list of files to populate videos table
 video_root = '../static/videos'
 flask_video_root = '/static/videos' # flask takes static as root dir for vids/pics
-video_filepaths = os.listdir(video_root)[:10] ###!!! only taking 10 for testing!!!
+video_filepaths = os.listdir(video_root) ###!!! only taking 10 for testing!!!
 filepaths = []
 for vid in video_filepaths:
     filepaths.append(flask_video_root + '/' + vid)

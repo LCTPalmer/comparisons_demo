@@ -4,6 +4,7 @@ import os, copy, sqlite3, numpy as np, trueskill as ts
 from bokeh.plotting import figure, ColumnDataSource
 from bokeh.models import HoverTool, PanTool, WheelZoomTool
 from bokeh.embed import components
+from bokeh.models import PrintfTickFormatter
 
 def get_ts(m):
 
@@ -62,8 +63,36 @@ def get_ts(m):
 
 def get_bokeh_js(ts_before, ts_after):
     '''turn figure into js and tag for embedding'''
-    p = figure(plot_width=400, plot_height=400,
-           title=None, toolbar_location="below")
-    p.circle([1, 2, 3, 4, 5], [2, 5, 8, 2, 7], size=10)
+    
+    #turn list of dicts into data source for plot
+    ratings_before = [r['rating'].mu for r in ts_before if r['compared_in_sess']]
+    y_pos_before = [0 for r in ts_before if r['compared_in_sess']]
+    ratings_after = [r['rating'].mu for r in ts_after if r['compared_in_sess']]
+    y_pos_after = [1 for r in ts_after if r['compared_in_sess']]
+    filepaths =  [r['filepath'] for r in ts_after if r['compared_in_sess']]
+    source = ColumnDataSource({'ratings_after': ratings_after,  'y_pos_after': y_pos_after,
+                               'ratings_before': ratings_before, 'y_pos_before': y_pos_before,
+                               'filepaths': filepaths})
+
+    tooltip_str = """
+                <video width="300" autoplay loop>
+                    <source src=@filepaths type="video/ogg">
+                </video> 
+            """
+
+    p = figure(tools=[HoverTool(names=['vid'], tooltips=tooltip_str), PanTool(), WheelZoomTool()], 
+                plot_width=1200, plot_height=500,
+                x_range = (0, 45), y_range = (-0.5, 1.5),
+                toolbar_location="below")
+    p.circle('ratings_before', 'y_pos_before', name='vid', source=source, size=10, alpha = .7)
+    p.circle('ratings_after', 'y_pos_after', name='vid', source=source, size=10, color='red', alpha = .7)
+    p.text(5, 0, text=["Before"])
+    p.text(5, 1, text=["After"])
+    for rb, ra in zip(ratings_before, ratings_after):
+        p.line([rb, ra], [0, 1], color='black', line_dash=[5,5]) 
+
+    #formatting
+    p.yaxis[0].formatter = PrintfTickFormatter(format="")
+    p.xaxis.axis_label = "Percpetual load estimate"
 
     return components(p) #(js_script, div)

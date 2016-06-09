@@ -177,7 +177,7 @@ def logout():
     logout_user()
     print 'dumping db to dump.sql file .....'
     m.dump_db()
-    return redirect(url_for('feedback_page'))
+    return redirect(url_for('registration'))
 
 @app.route("/feedback")
 def feedback_page():
