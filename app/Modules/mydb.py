@@ -16,10 +16,6 @@ class MyDB():
                 WHERE num_comparisons = (SELECT MIN(num_comparisons) FROM videos) 
                 ORDER BY RANDOM() 
                 LIMIT 2'''
-#        sql_str = '''SELECT video_id, filepath
-#                FROM videos
-#                ORDER BY RANDOM() 
-#                LIMIT 2'''
         return sqlite3.connect(self.address).cursor().execute(sql_str).fetchall()
 
     def write_comparison_row(self, row_dict):

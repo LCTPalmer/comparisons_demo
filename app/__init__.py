@@ -136,7 +136,7 @@ def comparisons():
     if request.method=='GET':
 
         #choose image pair
-        image_pair = m.find_pair() # TODO find random pair so equal amount of comparisons!
+        image_pair = m.find_pair() 
         session['IMAGE_PAIR'] = image_pair
         #render the html template
         return render_template('comparisons.html', title='Active Image Comparison', image_pair=image_pair)
