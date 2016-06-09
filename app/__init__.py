@@ -4,6 +4,7 @@ from uuid import uuid4
 from datetime import datetime
 from Modules.mydb import MyDB
 from Modules.user import User
+from Modules import feedback
 import sqlite3, os, pdb
 
 ###SETUP###
@@ -135,7 +136,7 @@ def comparisons():
     if request.method=='GET':
 
         #choose image pair
-        image_pair = m.find_pair()
+        image_pair = m.find_pair() # TODO find random pair so equal amount of comparisons!
         session['IMAGE_PAIR'] = image_pair
         #render the html template
         return render_template('comparisons.html', title='Active Image Comparison', image_pair=image_pair)
@@ -176,10 +177,17 @@ def logout():
     logout_user()
     print 'dumping db to dump.sql file .....'
     m.dump_db()
+    return redirect(url_for('feedback_page'))
 
-#before, after = feedback.get_ts_change()
-#return render_template('feedback.html', before=before, after=after) #maybe BOKEH?
-    return redirect(url_for('login'))
+@app.route("/feedback")
+def feedback_page():
+    #get ts ratings before and after the last contribution
+    ts_before, ts_after = feedback.get_ts(m)
+    #print ts_before, '\n\n', ts_after
+
+    #embed into bokeh html
+    js, div = feedback.get_bokeh_js(ts_before, ts_after)
+    return render_template('feedback.html', js=js, div=div)
 
 if __name__=='__main__':
     app.run(debug=True)
