@@ -82,6 +82,7 @@ def login():
             new_user = User(username=username, password=password, id=id)
             login_user(new_user)
             session['SUUID'] = unicode(uuid4())
+            session['has_compared'] = False #update when compared to enable feedback
             #update db with this session
             session_row = {'suuid': session['SUUID'], 'user_id': int(id), 'start_time': unicode(datetime.now())}
             m.write_session_row(session_row)
@@ -161,7 +162,8 @@ def comparisons():
         m.write_comparison_row(comp_row)
         m.update_video_counter(v1_id)
         m.update_video_counter(v2_id)
-
+        
+        session['has_compared'] = True
         #redirect to another page to avoid form resubmission
         return redirect(url_for('comparison_processing'))
 
@@ -173,13 +175,16 @@ def comparison_processing():
 
 @app.route("/feedback")
 def feedback_page():
-    #get ts ratings before and after the last contribution
-    ts_before, ts_after = feedback.get_ts(m)
-    #print ts_before, '\n\n', ts_after
 
-    #embed into bokeh html
-    js, div = feedback.get_bokeh_js(ts_before, ts_after)
-    return render_template('feedback.html', js=js, div=div)
+    if not session['has_compared']:
+        flash('You need to make some comparisons before checking feedback!')
+        return redirect(url_for('comparisons'))
+    else:
+        #get ts ratings before and after the last contribution
+        ts_before, ts_after = feedback.get_ts(m, session)
+        #embed into bokeh html
+        js, div = feedback.get_bokeh_js(ts_before, ts_after)
+        return render_template('feedback.html', js=js, div=div)
 
 #---logout page---#
 @app.route("/logout")
