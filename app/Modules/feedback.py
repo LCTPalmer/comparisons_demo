@@ -6,7 +6,7 @@ from bokeh.models import HoverTool, PanTool, WheelZoomTool
 from bokeh.embed import components
 from bokeh.models import PrintfTickFormatter
 
-def get_ts(m):
+def get_ts(m, session):
 
     #het the comparisons from the db
     sql_str = '''SELECT v1, v2, suuid, winner
@@ -14,16 +14,23 @@ def get_ts(m):
     full_list = sqlite3.connect(m.address).cursor().execute(sql_str).fetchall()
 
     #get index of first comparisonin last session
-    last_suuid = full_list[-1][2]
+    last_suuid = str(session['SUUID'])#full_list[-1][2]
+    new_sess_ind = [rec[2] for rec in full_list].index(last_suuid)
+
+    #get rid of all comps not in this session
+    this_sess_list = []
+    for rec in full_list[new_sess_ind:]:
+        if rec[2] == last_suuid:
+            this_sess_list.append(rec)
+
+    #add the full list up to the new session, plus comparisons since the new session    
+    full_sess_list = full_list[:new_sess_ind] + this_sess_list
+    
+    #get the videos compared in this session
     sess_vids_compared = [] #container for videos compared in the most recent session
-    new_sess_ind = 0 # initialise
-    for ind, comp in enumerate(reversed(full_list)):
-        if comp[2] == last_suuid:
-            sess_vids_compared.append(comp[0])
-            sess_vids_compared.append(comp[1])
-        else:
-            new_sess_ind = len(full_list) - ind
-            break
+    for comp in this_sess_list:
+        sess_vids_compared.append(comp[0])
+        sess_vids_compared.append(comp[1])
     sess_vids_compared = list(set(sess_vids_compared))
 
     #TRUESKILL
@@ -43,7 +50,7 @@ def get_ts(m):
 
     #go through comparisons, updating the ts_ratings
     en_start = 0 #new_sess_ind - 20 #so it looks like more of an impact?
-    for ind, comp in enumerate(full_list[en_start:]):
+    for ind, comp in enumerate(full_sess_list[en_start:]):
 
         #if this index is the first of the last session, log the before list
         if ind == new_sess_ind:
@@ -93,6 +100,6 @@ def get_bokeh_js(ts_before, ts_after):
 
     #formatting
     p.yaxis[0].formatter = PrintfTickFormatter(format="")
-    p.xaxis.axis_label = "Estimate of Demand"
+    p.xaxis.axis_label = "Demand"
 
     return components(p) #(js_script, div)

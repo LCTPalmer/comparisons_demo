@@ -1,10 +1,20 @@
-{% block doc -%}
 <!DOCTYPE html>
+{% block doc -%}
 <html{% block html_attribs %}{% endblock html_attribs %}>
 {%- block html %}
   <head>
     {%- block head %}
     <title>{% block title %}{% endblock title %}</title>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <span style="color:red;"><li>{{ message }}</li></span>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 
     {%- block metas %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
