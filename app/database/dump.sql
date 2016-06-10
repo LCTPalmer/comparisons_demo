@@ -209,6 +209,7 @@ INSERT INTO "comparisons" VALUES(199,36,20,36,'c99edcda-0a98-459a-b3e1-0621bb11d
 INSERT INTO "comparisons" VALUES(200,2,61,61,'c99edcda-0a98-459a-b3e1-0621bb11d498');
 INSERT INTO "comparisons" VALUES(201,48,7,48,'c99edcda-0a98-459a-b3e1-0621bb11d498');
 INSERT INTO "comparisons" VALUES(202,99,96,96,'c99edcda-0a98-459a-b3e1-0621bb11d498');
+INSERT INTO "comparisons" VALUES(203,53,106,106,'a04b0b91-0b3d-405a-8017-90de7caa9b82');
 CREATE TABLE sessions (
     session_id integer primary key autoincrement not null,
     suuid text,
@@ -232,7 +233,7 @@ DELETE FROM "sqlite_sequence";
 INSERT INTO "sqlite_sequence" VALUES('videos',114);
 INSERT INTO "sqlite_sequence" VALUES('users',6);
 INSERT INTO "sqlite_sequence" VALUES('sessions',12);
-INSERT INTO "sqlite_sequence" VALUES('comparisons',202);
+INSERT INTO "sqlite_sequence" VALUES('comparisons',203);
 CREATE TABLE users (
     user_id integer primary key autoincrement not null,
     username text,
@@ -303,7 +304,7 @@ INSERT INTO "videos" VALUES(49,'/static/videos/d31d_V1391091141_992.ogv',3);
 INSERT INTO "videos" VALUES(50,'/static/videos/d21d_V1391160727_024.ogv',3);
 INSERT INTO "videos" VALUES(51,'/static/videos/d11d_V1391160670_995.ogv',3);
 INSERT INTO "videos" VALUES(52,'/static/videos/d11d_V1391160674_995.ogv',4);
-INSERT INTO "videos" VALUES(53,'/static/videos/d32dt_V1391088863_988.ogv',3);
+INSERT INTO "videos" VALUES(53,'/static/videos/d32dt_V1391088863_988.ogv',4);
 INSERT INTO "videos" VALUES(54,'/static/videos/d31d_V1391091129_993.ogv',3);
 INSERT INTO "videos" VALUES(55,'/static/videos/d11dt_V1391160781_008.ogv',3);
 INSERT INTO "videos" VALUES(56,'/static/videos/d21d_V1391089399_040.ogv',4);
@@ -356,7 +357,7 @@ INSERT INTO "videos" VALUES(102,'/static/videos/d13dt_V1391090446_978.ogv',3);
 INSERT INTO "videos" VALUES(103,'/static/videos/d21d_V1391089301_997.ogv',3);
 INSERT INTO "videos" VALUES(104,'/static/videos/d21d_V1391088327_052.ogv',3);
 INSERT INTO "videos" VALUES(105,'/static/videos/d41dt_V1391160758_010.ogv',3);
-INSERT INTO "videos" VALUES(106,'/static/videos/d13d_V1391091541_997.ogv',3);
+INSERT INTO "videos" VALUES(106,'/static/videos/d13d_V1391091541_997.ogv',4);
 INSERT INTO "videos" VALUES(107,'/static/videos/d21d_V1391161247_003.ogv',4);
 INSERT INTO "videos" VALUES(108,'/static/videos/d21d_V1391161583_000.ogv',3);
 INSERT INTO "videos" VALUES(109,'/static/videos/d31dt_V1391090432_001.ogv',3);

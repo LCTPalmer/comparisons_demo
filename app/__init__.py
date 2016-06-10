@@ -144,8 +144,8 @@ def comparisons():
     if request.method=='POST':
 
         #retrieve the image pair from session variable
-        #image_pair = session['IMAGE_PAIR']
-        session['IMAGE_PAIR'] = None
+        image_pair = session['IMAGE_PAIR']
+        #session['IMAGE_PAIR'] = None
         session.pop('IMAGE_PAIR', None)
         v1_id = image_pair[0][0]
         v2_id = image_pair[1][0]
