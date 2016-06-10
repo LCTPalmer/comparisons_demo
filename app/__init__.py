@@ -49,7 +49,7 @@ def registration():
         #if already registered, bypass the form to login page
         if request.form['submit'] == 'already_registered':
             return redirect(url_for('login'))
-        
+
         #take in new user and add to user table
         elif request.form['submit'] == 'register':
             username = request.form['username']
@@ -74,7 +74,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
         new_user_id = m.authenticate_user(username=username, password=password)
-        if not new_user_id: 
+        if not new_user_id:
             flash('Username or password invalid', 'error')
             return redirect(url_for('login'))
         else: #i.e. user is in db
@@ -136,7 +136,7 @@ def comparisons():
     if request.method=='GET':
 
         #choose image pair
-        image_pair = m.find_pair() 
+        image_pair = m.find_pair()
         session['IMAGE_PAIR'] = image_pair
         #render the html template
         return render_template('comparisons.html', title='Active Image Comparison', image_pair=image_pair)
@@ -144,7 +144,8 @@ def comparisons():
     if request.method=='POST':
 
         #retrieve the image pair from session variable
-        image_pair = session['IMAGE_PAIR']
+        #image_pair = session['IMAGE_PAIR']
+        session['IMAGE_PAIR'] = None
         session.pop('IMAGE_PAIR', None)
         v1_id = image_pair[0][0]
         v2_id = image_pair[1][0]
@@ -156,7 +157,7 @@ def comparisons():
         elif request.form['choice']=='Video 2':
             comp_row = {'v1' : v1_id, 'v2' : v2_id, 'winner' : v2_id, 'suuid' : session['SUUID']}
 
-        #update the database 
+        #update the database
         m.write_comparison_row(comp_row)
         m.update_video_counter(v1_id)
         m.update_video_counter(v2_id)
@@ -170,15 +171,6 @@ def comparison_processing():
     #helper redirect function so that refresh doesn't re-post info
     return redirect(url_for('comparisons'))
 
-#---logout page---#
-@app.route("/logout")
-@login_required
-def logout():
-    logout_user()
-    print 'dumping db to dump.sql file .....'
-    m.dump_db()
-    return redirect(url_for('registration'))
-
 @app.route("/feedback")
 def feedback_page():
     #get ts ratings before and after the last contribution
@@ -188,6 +180,15 @@ def feedback_page():
     #embed into bokeh html
     js, div = feedback.get_bokeh_js(ts_before, ts_after)
     return render_template('feedback.html', js=js, div=div)
+
+#---logout page---#
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    print 'dumping db to dump.sql file .....'
+    m.dump_db()
+    return redirect(url_for('registration'))
 
 if __name__=='__main__':
     app.run(debug=True)

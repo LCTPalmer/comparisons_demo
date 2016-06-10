@@ -75,7 +75,7 @@ def get_bokeh_js(ts_before, ts_after):
                                'filepaths': filepaths})
 
     tooltip_str = """
-                <video width="300" autoplay loop>
+                <video width="300" height="225" autoplay loop>
                     <source src=@filepaths type="video/ogg">
                 </video> 
             """
@@ -86,13 +86,13 @@ def get_bokeh_js(ts_before, ts_after):
                 toolbar_location="below")
     p.circle('ratings_before', 'y_pos_before', name='vid', source=source, size=10, alpha = .7)
     p.circle('ratings_after', 'y_pos_after', name='vid', source=source, size=10, color='red', alpha = .7)
-    p.text(5, 0, text=["Before your session"])
-    p.text(5, 1, text=["After your session"])
+    p.text(.5, 0, text=["Demand before your comparisons"], text_color='blue')
+    p.text(.5, 1, text=["Demand after your comparisons"], text_color='red')
     for rb, ra in zip(ratings_before, ratings_after):
         p.line([rb, ra], [0, 1], color='black', line_dash=[5,5]) 
 
     #formatting
     p.yaxis[0].formatter = PrintfTickFormatter(format="")
-    p.xaxis.axis_label = "Percpetual load estimate"
+    p.xaxis.axis_label = "Estimate of Demand"
 
     return components(p) #(js_script, div)
