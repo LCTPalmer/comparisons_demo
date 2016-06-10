@@ -261,6 +261,10 @@ INSERT INTO "comparisons" VALUES(251,73,67,67,'665a29d9-bf22-4932-a824-dd6e5fdb1
 INSERT INTO "comparisons" VALUES(252,59,69,69,'15a5a2c9-9bab-4cba-be96-618ac33f1ecb');
 INSERT INTO "comparisons" VALUES(253,74,24,74,'665a29d9-bf22-4932-a824-dd6e5fdb1095');
 INSERT INTO "comparisons" VALUES(254,13,64,64,'665a29d9-bf22-4932-a824-dd6e5fdb1095');
+INSERT INTO "comparisons" VALUES(255,6,79,79,'a81db133-0967-4f56-9f34-57ef8c467e95');
+INSERT INTO "comparisons" VALUES(256,3,75,3,'a81db133-0967-4f56-9f34-57ef8c467e95');
+INSERT INTO "comparisons" VALUES(257,77,99,77,'8125296a-92df-4ae9-84a9-ca2b354b5c17');
+INSERT INTO "comparisons" VALUES(258,58,37,58,'8125296a-92df-4ae9-84a9-ca2b354b5c17');
 CREATE TABLE sessions (
     session_id integer primary key autoincrement not null,
     suuid text,
@@ -287,11 +291,13 @@ INSERT INTO "sessions" VALUES(16,'4955d1f8-6192-4bf8-9a92-8078992490d7',2,'2016-
 INSERT INTO "sessions" VALUES(17,'893f3e98-1dbf-4318-bfda-eae572136513',5,'2016-06-10 16:34:23.333378');
 INSERT INTO "sessions" VALUES(18,'665a29d9-bf22-4932-a824-dd6e5fdb1095',2,'2016-06-10 16:45:33.331795');
 INSERT INTO "sessions" VALUES(19,'15a5a2c9-9bab-4cba-be96-618ac33f1ecb',5,'2016-06-10 16:47:38.999759');
+INSERT INTO "sessions" VALUES(20,'a81db133-0967-4f56-9f34-57ef8c467e95',2,'2016-06-10 17:32:30.813504');
+INSERT INTO "sessions" VALUES(21,'8125296a-92df-4ae9-84a9-ca2b354b5c17',2,'2016-06-10 17:33:17.955265');
 DELETE FROM "sqlite_sequence";
 INSERT INTO "sqlite_sequence" VALUES('videos',114);
 INSERT INTO "sqlite_sequence" VALUES('users',6);
-INSERT INTO "sqlite_sequence" VALUES('sessions',19);
-INSERT INTO "sqlite_sequence" VALUES('comparisons',254);
+INSERT INTO "sqlite_sequence" VALUES('sessions',21);
+INSERT INTO "sqlite_sequence" VALUES('comparisons',258);
 CREATE TABLE users (
     user_id integer primary key autoincrement not null,
     username text,
@@ -312,10 +318,10 @@ CREATE TABLE videos (
 );
 INSERT INTO "videos" VALUES(1,'/static/videos/d11d_V1391089173_980.ogv',5);
 INSERT INTO "videos" VALUES(2,'/static/videos/d21d_V1391160865_992.ogv',5);
-INSERT INTO "videos" VALUES(3,'/static/videos/d13d_V1391091201_995.ogv',4);
+INSERT INTO "videos" VALUES(3,'/static/videos/d13d_V1391091201_995.ogv',5);
 INSERT INTO "videos" VALUES(4,'/static/videos/d31d_V1391161819_012.ogv',4);
 INSERT INTO "videos" VALUES(5,'/static/videos/d31dt_V1391090427_977.ogv',5);
-INSERT INTO "videos" VALUES(6,'/static/videos/d12d_V1391090599_058.ogv',4);
+INSERT INTO "videos" VALUES(6,'/static/videos/d12d_V1391090599_058.ogv',5);
 INSERT INTO "videos" VALUES(7,'/static/videos/d21d_V1391160921_009.ogv',5);
 INSERT INTO "videos" VALUES(8,'/static/videos/d32d_V1391089618_019.ogv',4);
 INSERT INTO "videos" VALUES(9,'/static/videos/d31d_V1391091137_988.ogv',4);
@@ -346,7 +352,7 @@ INSERT INTO "videos" VALUES(33,'/static/videos/d11dt_V1391160777_011.ogv',4);
 INSERT INTO "videos" VALUES(34,'/static/videos/d11d_V1391160908_014.ogv',5);
 INSERT INTO "videos" VALUES(35,'/static/videos/d23d_V1391090482_027.ogv',5);
 INSERT INTO "videos" VALUES(36,'/static/videos/d31d_V1391090412_987.ogv',5);
-INSERT INTO "videos" VALUES(37,'/static/videos/d21d_V1391089372_968.ogv',4);
+INSERT INTO "videos" VALUES(37,'/static/videos/d21d_V1391089372_968.ogv',5);
 INSERT INTO "videos" VALUES(38,'/static/videos/d13d_V1391091357_997.ogv',4);
 INSERT INTO "videos" VALUES(39,'/static/videos/d11d_V1391090953_968.ogv',5);
 INSERT INTO "videos" VALUES(40,'/static/videos/d32dt_V1391089778_007.ogv',5);
@@ -367,7 +373,7 @@ INSERT INTO "videos" VALUES(54,'/static/videos/d31d_V1391091129_993.ogv',5);
 INSERT INTO "videos" VALUES(55,'/static/videos/d11dt_V1391160781_008.ogv',4);
 INSERT INTO "videos" VALUES(56,'/static/videos/d21d_V1391089399_040.ogv',6);
 INSERT INTO "videos" VALUES(57,'/static/videos/d21d_V1391088961_985.ogv',4);
-INSERT INTO "videos" VALUES(58,'/static/videos/d32d_V1391090945_992.ogv',4);
+INSERT INTO "videos" VALUES(58,'/static/videos/d32d_V1391090945_992.ogv',5);
 INSERT INTO "videos" VALUES(59,'/static/videos/d21d_V1391088334_966.ogv',5);
 INSERT INTO "videos" VALUES(60,'/static/videos/d12d_V1391090657_984.ogv',5);
 INSERT INTO "videos" VALUES(61,'/static/videos/d31d_V1391091286_997.ogv',4);
@@ -384,11 +390,11 @@ INSERT INTO "videos" VALUES(71,'/static/videos/d31d_V1391091133_995.ogv',5);
 INSERT INTO "videos" VALUES(72,'/static/videos/d21d_V1391160916_991.ogv',4);
 INSERT INTO "videos" VALUES(73,'/static/videos/d11d_V1391089511_992.ogv',5);
 INSERT INTO "videos" VALUES(74,'/static/videos/d41dt_V1391160750_015.ogv',5);
-INSERT INTO "videos" VALUES(75,'/static/videos/d11d_V1391089230_989.ogv',4);
+INSERT INTO "videos" VALUES(75,'/static/videos/d11d_V1391089230_989.ogv',5);
 INSERT INTO "videos" VALUES(76,'/static/videos/d23d_V1391090711_994.ogv',4);
-INSERT INTO "videos" VALUES(77,'/static/videos/d14d_V1391090706_989.ogv',4);
+INSERT INTO "videos" VALUES(77,'/static/videos/d14d_V1391090706_989.ogv',5);
 INSERT INTO "videos" VALUES(78,'/static/videos/d11d_V1391088320_977.ogv',4);
-INSERT INTO "videos" VALUES(79,'/static/videos/d21dt_V1391161050_012.ogv',4);
+INSERT INTO "videos" VALUES(79,'/static/videos/d21dt_V1391161050_012.ogv',5);
 INSERT INTO "videos" VALUES(80,'/static/videos/d12d_V1391161450_030.ogv',4);
 INSERT INTO "videos" VALUES(81,'/static/videos/d11d_V1391090986_976.ogv',5);
 INSERT INTO "videos" VALUES(82,'/static/videos/d22d_V1391091193_976.ogv',5);
@@ -408,7 +414,7 @@ INSERT INTO "videos" VALUES(95,'/static/videos/d31dt_V1391090924_983.ogv',5);
 INSERT INTO "videos" VALUES(96,'/static/videos/d41dt_V1391160754_011.ogv',4);
 INSERT INTO "videos" VALUES(97,'/static/videos/d21d_V1391089297_961.ogv',4);
 INSERT INTO "videos" VALUES(98,'/static/videos/d22d_V1391090919_980.ogv',4);
-INSERT INTO "videos" VALUES(99,'/static/videos/d22d_V1391161228_012.ogv',4);
+INSERT INTO "videos" VALUES(99,'/static/videos/d22d_V1391161228_012.ogv',5);
 INSERT INTO "videos" VALUES(100,'/static/videos/d12d_V1391090747_035.ogv',4);
 INSERT INTO "videos" VALUES(101,'/static/videos/d21d_V1391089090_964.ogv',4);
 INSERT INTO "videos" VALUES(102,'/static/videos/d13dt_V1391090446_978.ogv',5);
