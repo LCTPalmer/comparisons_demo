@@ -320,6 +320,7 @@ INSERT INTO "sessions" VALUES(18,'665a29d9-bf22-4932-a824-dd6e5fdb1095',2,'2016-
 INSERT INTO "sessions" VALUES(19,'15a5a2c9-9bab-4cba-be96-618ac33f1ecb',5,'2016-06-10 16:47:38.999759');
 INSERT INTO "sessions" VALUES(20,'a81db133-0967-4f56-9f34-57ef8c467e95',2,'2016-06-10 17:32:30.813504');
 INSERT INTO "sessions" VALUES(21,'8125296a-92df-4ae9-84a9-ca2b354b5c17',2,'2016-06-10 17:33:17.955265');
+<<<<<<< HEAD
 INSERT INTO "sessions" VALUES(22,'65577539-b979-4911-9c9f-1dfe7043e0ef',1,'2016-06-10 17:33:48.184213');
 INSERT INTO "sessions" VALUES(23,'9b22403d-0f3f-4d27-8150-48666d73953e',7,'2016-06-10 17:38:59.313377');
 INSERT INTO "sessions" VALUES(24,'3f0ef194-f4c3-4bf6-91f7-cd2603a84ef9',2,'2016-06-10 18:26:42.480087');
@@ -329,6 +330,19 @@ INSERT INTO "sqlite_sequence" VALUES('videos',114);
 INSERT INTO "sqlite_sequence" VALUES('users',8);
 INSERT INTO "sqlite_sequence" VALUES('sessions',25);
 INSERT INTO "sqlite_sequence" VALUES('comparisons',285);
+=======
+INSERT INTO "sessions" VALUES(22,'055da987-6315-45d0-80a5-ca13a6a63a35',2,'2016-06-13 11:32:28.087575');
+INSERT INTO "sessions" VALUES(23,'1c3b94e1-b3f9-434b-a9c3-195c0407c501',2,'2016-06-13 11:32:51.918868');
+INSERT INTO "sessions" VALUES(24,'ddfee8b3-20c0-4e18-9d70-e384868b7790',1,'2016-06-13 12:02:49.671721');
+INSERT INTO "sessions" VALUES(25,'ebd95277-779f-45ed-af0b-a5cdeb7c736a',2,'2016-06-13 12:03:02.264909');
+INSERT INTO "sessions" VALUES(26,'8c043fa7-3421-477a-aca8-e4fce4326de2',1,'2016-06-13 12:35:02.099312');
+INSERT INTO "sessions" VALUES(27,'19b32401-d91e-4e07-9a73-20d437fba22d',2,'2016-06-13 12:56:04.623328');
+DELETE FROM "sqlite_sequence";
+INSERT INTO "sqlite_sequence" VALUES('videos',114);
+INSERT INTO "sqlite_sequence" VALUES('users',9);
+INSERT INTO "sqlite_sequence" VALUES('sessions',27);
+INSERT INTO "sqlite_sequence" VALUES('comparisons',258);
+>>>>>>> no_reg
 CREATE TABLE users (
     user_id integer primary key autoincrement not null,
     username text,
@@ -342,8 +356,14 @@ INSERT INTO "users" VALUES(3,'u2','123',1);
 INSERT INTO "users" VALUES(4,'ed','123',1);
 INSERT INTO "users" VALUES(5,'alina','alina',1);
 INSERT INTO "users" VALUES(6,'u1','123',0);
+<<<<<<< HEAD
 INSERT INTO "users" VALUES(7,'Joshua','Joshua',1);
 INSERT INTO "users" VALUES(8,'luke2','luke2',1);
+=======
+INSERT INTO "users" VALUES(7,'u1','123',1);
+INSERT INTO "users" VALUES(8,'u1','123',0);
+INSERT INTO "users" VALUES(9,'u1','123',1);
+>>>>>>> no_reg
 CREATE TABLE videos (
     video_id integer primary key autoincrement not null,
     filepath text not null,
