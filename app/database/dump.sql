@@ -293,10 +293,14 @@ INSERT INTO "sessions" VALUES(18,'665a29d9-bf22-4932-a824-dd6e5fdb1095',2,'2016-
 INSERT INTO "sessions" VALUES(19,'15a5a2c9-9bab-4cba-be96-618ac33f1ecb',5,'2016-06-10 16:47:38.999759');
 INSERT INTO "sessions" VALUES(20,'a81db133-0967-4f56-9f34-57ef8c467e95',2,'2016-06-10 17:32:30.813504');
 INSERT INTO "sessions" VALUES(21,'8125296a-92df-4ae9-84a9-ca2b354b5c17',2,'2016-06-10 17:33:17.955265');
+INSERT INTO "sessions" VALUES(22,'055da987-6315-45d0-80a5-ca13a6a63a35',2,'2016-06-13 11:32:28.087575');
+INSERT INTO "sessions" VALUES(23,'1c3b94e1-b3f9-434b-a9c3-195c0407c501',2,'2016-06-13 11:32:51.918868');
+INSERT INTO "sessions" VALUES(24,'ddfee8b3-20c0-4e18-9d70-e384868b7790',1,'2016-06-13 12:02:49.671721');
+INSERT INTO "sessions" VALUES(25,'ebd95277-779f-45ed-af0b-a5cdeb7c736a',2,'2016-06-13 12:03:02.264909');
 DELETE FROM "sqlite_sequence";
 INSERT INTO "sqlite_sequence" VALUES('videos',114);
-INSERT INTO "sqlite_sequence" VALUES('users',6);
-INSERT INTO "sqlite_sequence" VALUES('sessions',21);
+INSERT INTO "sqlite_sequence" VALUES('users',8);
+INSERT INTO "sqlite_sequence" VALUES('sessions',25);
 INSERT INTO "sqlite_sequence" VALUES('comparisons',258);
 CREATE TABLE users (
     user_id integer primary key autoincrement not null,
@@ -311,6 +315,8 @@ INSERT INTO "users" VALUES(3,'u2','123',1);
 INSERT INTO "users" VALUES(4,'ed','123',1);
 INSERT INTO "users" VALUES(5,'alina','alina',1);
 INSERT INTO "users" VALUES(6,'u1','123',0);
+INSERT INTO "users" VALUES(7,'u1','123',1);
+INSERT INTO "users" VALUES(8,'u1','123',0);
 CREATE TABLE videos (
     video_id integer primary key autoincrement not null,
     filepath text not null,
