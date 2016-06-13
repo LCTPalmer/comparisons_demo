@@ -70,40 +70,18 @@ def registration():
             username = request.form['username']
             password = request.form['password']
             driver_status = request.form['driver_status']
+            print driver_status
             if driver_status == 'Yes':
                 license = True
-            else:
+            elif driver_status == 'No':
                 license = False
+            else:
+                flash('Please indicate whether you have a driving license when registering')
+                return redirect(url_for('registration'))
             m.register_user(username, password, license)
 
             #login the new usr
             new_user_id = m.authenticate_user(username=username, password=password)
-            id = new_user_id[0][0]#get int value
-            new_user = User(username=username, password=password, id=id)
-            login_user(new_user)
-            session['SUUID'] = unicode(uuid4())
-            session['has_compared'] = False #update when compared to enable feedback
-            #update db with this session
-            session_row = {'suuid': session['SUUID'], 'user_id': int(id), 'start_time': unicode(datetime.now())}
-            m.write_session_row(session_row)
-            return redirect(url_for('instructions'))
-
-#---login page---#
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    #serve the login form
-    if request.method=='GET':
-        return render_template('login.html')
-
-    #get user details from form
-    if request.method=='POST':
-        username = request.form['username']
-        password = request.form['password']
-        new_user_id = m.authenticate_user(username=username, password=password)
-        if not new_user_id:
-            flash('Username or password invalid', 'error')
-            return redirect(url_for('login'))
-        else: #i.e. user is in db
             id = new_user_id[0][0]#get int value
             new_user = User(username=username, password=password, id=id)
             login_user(new_user)
