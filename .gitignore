@@ -2,3 +2,5 @@ app/static/videos
 app/database/pairwise_comparisons.db
 *.pyc
 *.swp
+*.gz
+*.bak
