@@ -52,8 +52,8 @@ def registration():
             password = request.form['password']
             new_user_id = m.authenticate_user(username=username, password=password)
             if not new_user_id:
-                flash('Username or password invalid', 'error')
-                return redirect(url_for('login'))
+                flash('Username or password invalid')
+                return redirect(url_for('registration'))
             else: #i.e. user is in db
                 id = new_user_id[0][0]#get int value
                 new_user = User(username=username, password=password, id=id)
